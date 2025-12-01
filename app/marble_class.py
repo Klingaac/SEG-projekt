@@ -8,8 +8,8 @@ marble_id = 0
 
 class marble:
     def __init__(self, x=0, y=0):
-        # global marble_id
-        # global all_marbles
+        global marble_id
+        global all_marbles
 
         # position
         self.x = x
