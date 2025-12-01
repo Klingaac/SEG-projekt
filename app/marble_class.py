@@ -1,7 +1,7 @@
 import random as r
+import globals
 
 # Globals
-MARBLE_RADIUS = 5
 
 all_marbles = {}
 marble_id = 0
@@ -15,8 +15,12 @@ class marble:
         self.x = x
         self.y = y
 
+        # physics properties
+        self.velocity = 0
+        self.weight = 1
+
         # incase i'd like to add varity to radii of marbles, just randomize ts value
-        self.radius = MARBLE_RADIUS 
+        self.radius = globals.MARBLE_RADIUS 
 
         self.color = random_color()
 
@@ -31,7 +35,9 @@ class marble:
         self.y = new_y
 
 
-def getMarbles():
+
+
+def getMarbles() -> dict[int, any]:
     return all_marbles
 
 def getMarble(ID):
