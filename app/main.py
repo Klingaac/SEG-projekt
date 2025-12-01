@@ -1,8 +1,6 @@
 import pygame
 
 import globals
-import positions
-import marble_class
 
 import process_input
 import process_physics

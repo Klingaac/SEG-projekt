@@ -6,6 +6,7 @@ import marble_class
 
 # Constants
 BACKGROUND_COLOR = (233, 236, 238)
+BACKGROUND_COLOR = (37, 39, 51)
 
 def main():
     globals.screen.fill(BACKGROUND_COLOR)
