@@ -1,4 +1,6 @@
 import random as r
+import colorsys
+
 import globals
 
 # Globals
@@ -44,4 +46,12 @@ def getMarble(ID):
     return all_marbles[id]
 
 def random_color():
-    return (r.randint(1,255), r.randint(1,255), r.randint(1,255))
+
+    # saturation and value intervals are made to produce a bright color
+    h = r.random()
+    s = r.uniform(0.75, 1)
+    v = r.uniform(0.85, 1)
+
+    rf, gf, bf = colorsys.hsv_to_rgb(h, s, v)
+
+    return (rf * 255, gf * 255, bf * 255)
