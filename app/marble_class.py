@@ -18,7 +18,8 @@ class marble:
         self.y = y
 
         # physics properties
-        self.velocity = 0
+        self.velocity_x = 0
+        self.velocity_y = 0
         self.weight = 1
 
         # incase i'd like to add varity to radii of marbles, just randomize ts value
