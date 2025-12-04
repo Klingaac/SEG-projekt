@@ -2,16 +2,11 @@ import random as r
 import colorsys
 
 import globals
+import objects
 
-# Globals
-
-all_marbles = {}
-marble_id = 0
 
 class marble:
     def __init__(self, x=0, y=0):
-        global marble_id
-        global all_marbles
 
         # position
         self.x = x
@@ -28,23 +23,12 @@ class marble:
         self.color = random_color()
 
         # give marble a unique id
-        marble_id += 1
-        self.ID = marble_id
-
-        all_marbles[marble_id] = self
+        self.ID = objects.add(self)
 
     def newPos(self, new_x, new_y):
         self.x = new_x
         self.y = new_y
 
-
-
-
-def getMarbles() -> dict[int, any]:
-    return all_marbles
-
-def getMarble(ID):
-    return all_marbles[id]
 
 def random_color():
 
