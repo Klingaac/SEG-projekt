@@ -1,6 +1,7 @@
 import pygame
 
 import marble_class
+import track_class
 import positions
 import globals
 
@@ -22,9 +23,22 @@ def main():
         if event.type == pygame.KEYDOWN:
 
             # player clicked escape, close window
-            if event.type == pygame.K_ESCAPE:
+            if event.key == pygame.K_ESCAPE:
                 globals.running = False
 
+            # change placement mode, so onclick, a different object will be created
+            if event.key == pygame.K_1:
+                globals.placementMode = "marble"
+                print(f"placement mode: {globals.placementMode}")
+
+                globals.cachedClick = None
+
+            if event.key == pygame.K_2:
+                globals.placementMode = "track"
+                print(f"placement mode: {globals.placementMode}")
+
+                globals.cachedClick = None
+                      
         # check button down
         if event.type == pygame.MOUSEBUTTONDOWN:
 
@@ -51,13 +65,28 @@ def main():
         if event.type == pygame.MOUSEBUTTONUP:
 
             if event.button == 1: # left
-                #create new marble on position in world
 
                 x, y = positions.mouse_to_world_position()
-
                 print(f"{x}, {y}")
 
-                marble = marble_class.marble(x, y)
+                #create new marble on position in world
+                if globals.placementMode == "marble":
+
+                    marble = marble_class.marble(x, y)
+                
+                elif globals.placementMode == "track":
+
+                    if globals.cachedClick:
+                        x1, y1 = globals.cachedClick
+                        x2, y2 = x, y
+                        width = 10
+
+                        track = track_class.track(x1, y1, x2, y2, width)
+
+                        globals.cachedClick = None
+
+                    else:
+                        globals.cachedClick = (x, y)
 
     # check if middle button is down and move the camera accordingly
     mouse_buttons = pygame.mouse.get_pressed()
