@@ -79,14 +79,39 @@ def main():
                     if globals.cachedClick:
                         x1, y1 = globals.cachedClick
                         x2, y2 = x, y
-                        width = 10
 
-                        track = track_class.track(x1, y1, x2, y2, width)
+                        start = pygame.Vector2(x1, y1)
+                        end = pygame.Vector2(x2, y2)
+
+                        width = 7
+
+                        # create new track only if its longer than .1, really small ones get buggy
+                        if abs((start - end).magnitude) > .1:
+                            track = track_class.track(start, end, width)
 
                         globals.cachedClick = None
 
                     else:
                         globals.cachedClick = (x, y)
+
+    # check if keys are being held down
+    keys = pygame.key.get_pressed()
+
+    step = 4
+
+    # i keep forgetin my mouse at home so i had to implement movement with WSAD
+
+    if keys[pygame.K_w]:
+        globals.camera = (globals.camera[0], globals.camera[1] - step * (1 / globals.zoom))
+
+    if keys[pygame.K_s]:
+        globals.camera = (globals.camera[0], globals.camera[1] + step * (1 / globals.zoom))
+
+    if keys[pygame.K_a]:
+        globals.camera = (globals.camera[0] - step * (1 / globals.zoom), globals.camera[1])
+
+    if keys[pygame.K_d]:
+        globals.camera = (globals.camera[0] + step * (1 / globals.zoom), globals.camera[1])
 
     # check if middle button is down and move the camera accordingly
     mouse_buttons = pygame.mouse.get_pressed()

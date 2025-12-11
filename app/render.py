@@ -28,12 +28,20 @@ def main():
 
         # render track
         elif type(object) is track_class.track:
+            width = int(object.width * globals.zoom) 
 
-            start_pos = world(object.x1, object.y1)
-            end_pos = world(object.x2, object.y2)
-            width = int(object.width * globals.zoom)
-            
-            pygame.draw.line(globals.screen, (255, 255, 255), start_pos, end_pos, width),
+            start_V = object.start
+            end_V = object.end
+
+            unit_V = (end_V - start_V).normalize()
+
+            point1 = end_V + (unit_V.rotate(90) * width)
+            point2 = end_V + (unit_V.rotate(-90) * width)
+
+            point3 = start_V + (unit_V.rotate(-90) * width)
+            point4 = start_V + (unit_V.rotate(90) * width)
+
+            pygame.draw.polygon(globals.screen, object.color, [point1, point2, point3, point4])
 
     # swap buffers
     pygame.display.flip()
