@@ -6,11 +6,10 @@ import objects
 
 
 class marble:
-    def __init__(self, x=0, y=0):
+    def __init__(self, pos):
 
         # position
-        self.x = x
-        self.y = y
+        self.position = pos
 
         # physics properties
         self.velocity_x = 0
@@ -25,6 +24,5 @@ class marble:
         # give marble a unique id
         self.ID = objects.add(self)
 
-    def newPos(self, new_x, new_y):
-        self.x = new_x
-        self.y = new_y
+    def newPos(self, new_pos):
+        self.pos = new_pos

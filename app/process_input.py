@@ -72,7 +72,9 @@ def main():
                 #create new marble on position in world
                 if globals.placementMode == "marble":
 
-                    marble = marble_class.marble(x, y)
+                    pos = pygame.Vector2(x, y)
+
+                    marble = marble_class.marble(pos)
                 
                 elif globals.placementMode == "track":
 
@@ -86,8 +88,8 @@ def main():
                         width = 7
 
                         # create new track only if its longer than .1, really small ones get buggy
-                        if abs((start - end).magnitude) > .1:
-                            track = track_class.track(start, end, width)
+                        #if abs((start - end).magnitude) > .1:
+                        track = track_class.track(start, end, width)
 
                         globals.cachedClick = None
 

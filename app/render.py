@@ -22,16 +22,22 @@ def main():
         # render marble
         if type(object) is marble_class.marble:
 
-            x, y = world(object.x, object.y)
+            pos = world(object.position)
 
-            pygame.draw.circle(globals.screen, object.color, (x, y), object.radius * globals.zoom)
+            pygame.draw.circle(globals.screen, object.color, pos, object.radius * globals.zoom)
 
         # render track
         elif type(object) is track_class.track:
             width = int(object.width * globals.zoom) 
 
-            start_V = object.start
-            end_V = object.end
+            start_V = world(object.start)
+            end_V = world(object.end)
+
+            if (end_V - start_V).magnitude() < .01:
+
+                print("TRACK OF LENGHT ZERO")
+
+                continue
 
             unit_V = (end_V - start_V).normalize()
 
