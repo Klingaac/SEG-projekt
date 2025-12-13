@@ -49,5 +49,13 @@ def main():
 
             pygame.draw.polygon(globals.screen, object.color, [point1, point2, point3, point4])
 
+    # show cached click
+    if globals.cachedClick:
+
+        cachedClickRadius = 4
+        cachedClickColor = (60, 149, 232)
+
+        pygame.draw.circle(globals.screen, cachedClickColor, world(globals.cachedClick), cachedClickRadius)
+
     # swap buffers
     pygame.display.flip()

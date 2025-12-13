@@ -66,24 +66,19 @@ def main():
 
             if event.button == 1: # left
 
-                x, y = positions.mouse_to_world_position()
-                print(f"{x}, {y}")
+                mouse_world_pos = positions.mouse_to_world_position()
 
                 #create new marble on position in world
                 if globals.placementMode == "marble":
 
-                    pos = pygame.Vector2(x, y)
-
-                    marble = marble_class.marble(pos)
+                    marble = marble_class.marble(mouse_world_pos)
                 
                 elif globals.placementMode == "track":
 
                     if globals.cachedClick:
-                        x1, y1 = globals.cachedClick
-                        x2, y2 = x, y
-
-                        start = pygame.Vector2(x1, y1)
-                        end = pygame.Vector2(x2, y2)
+                        
+                        start = globals.cachedClick
+                        end = mouse_world_pos
 
                         width = 7
 
@@ -94,7 +89,7 @@ def main():
                         globals.cachedClick = None
 
                     else:
-                        globals.cachedClick = (x, y)
+                        globals.cachedClick = mouse_world_pos
 
     # check if keys are being held down
     keys = pygame.key.get_pressed()
