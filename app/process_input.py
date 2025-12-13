@@ -54,12 +54,8 @@ def main():
             if event.button == 4: # scrolled up
                 globals.zoom = max(globals.zoom - .05, MIN_ZOOM)
 
-                print(f"zoom {globals.zoom}")
-
             if event.button == 5: # scrolled down
                 globals.zoom = min(globals.zoom + .05, MAX_ZOOM)
-
-                print(f"zoom {globals.zoom}")
 
         # check button up
         if event.type == pygame.MOUSEBUTTONUP:

@@ -28,26 +28,10 @@ def main():
 
         # render track
         elif type(object) is track_class.track:
-            width = int(object.width * globals.zoom) 
 
-            start_V = world(object.start)
-            end_V = world(object.end)
+            corners = tuple(map(world, object.corners))
 
-            if (end_V - start_V).magnitude() < .01:
-
-                print("TRACK OF LENGHT ZERO")
-
-                continue
-
-            unit_V = (end_V - start_V).normalize()
-
-            point1 = end_V + (unit_V.rotate(90) * width)
-            point2 = end_V + (unit_V.rotate(-90) * width)
-
-            point3 = start_V + (unit_V.rotate(-90) * width)
-            point4 = start_V + (unit_V.rotate(90) * width)
-
-            pygame.draw.polygon(globals.screen, object.color, [point1, point2, point3, point4])
+            pygame.draw.polygon(globals.screen, object.color, corners)
 
     # show cached click
     if globals.cachedClick:
