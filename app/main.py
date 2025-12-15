@@ -8,9 +8,6 @@ import render
 
 pygame.init()
 
-print("hello pygame")
-
-
 # Constants
 FPS = 60
 
@@ -19,7 +16,9 @@ def main():
     # Create screen
     globals.camera = (0, 0)
     globals.screen = pygame.display.set_mode((globals.SCREEN_WIDTH, globals.SCREEN_HEIGHT))
-    pygame.display.set_caption("ball simulation")
+    pygame.display.set_caption("Marble Simulation")
+
+    render.initialize()
 
     # Create clock to control framerate
     clock = pygame.time.Clock()
@@ -38,7 +37,6 @@ def main():
 
         # control framerate
         clock.tick(FPS)
-
 
 # run
 main()

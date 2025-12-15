@@ -42,4 +42,10 @@ def mouse_to_world_position():
 
     # mouse_pos is the same as screen_pos so i can just pass it here
     return screen_to_world_position(pygame.Vector2(mouse_pos[0], mouse_pos[1]))
+
+def mouse_to_screen_position():
+    mouse_pos = pygame.mouse.get_pos()
+
+    # return as a Vector2
+    return pygame.Vector2(mouse_pos[0], mouse_pos[1])
     

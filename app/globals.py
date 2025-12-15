@@ -15,6 +15,7 @@ SCREEN_HEIGHT = 600
 
 # marbles
 MARBLE_RADIUS = 15
+TRACK_WIDTH = 7
 
 def random_color():
 

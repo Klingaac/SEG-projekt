@@ -13,5 +13,11 @@ def add(object: any):
 def get(ID: int):
     return objects.get(ID, None)
 
+def remove(ID: int):
+    if objects.get(ID):
+        objects[ID] = None
+    else:
+        print("Failed to remove object")
+
 def getAll():
     return objects
